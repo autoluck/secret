@@ -2,7 +2,6 @@
 /**
  * User: JiangTao
  * Date: 16/7/16
- * Time: ÉÏÎç10:10
  */
 class AdminController extends Controller{
 
@@ -24,11 +23,13 @@ class AdminController extends Controller{
         );
     }
 
-    public function accessRules(){
+/*    public function accessRules(){
         return array(
             array('allow','users'=>array('@')),
             array('deny','users'=>array('*')),
         );
-    }
+    }*/
+    
+
 
 }
