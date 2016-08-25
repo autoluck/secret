@@ -106,64 +106,7 @@
 <div class="page-container">
     <div class="page-sidebar-wrapper">
         <div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
-            <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                <li class="start active">
-                    <a href="index.html">
-                        <i class="icon-home"></i>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <i class="icon-rocket"></i>
-                        <span class="title">Page Layouts</span>
-                        <span class="arrow open"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="layout_sidebar_reversed.html">
-                                <span class="badge badge-warning">new</span>Right Sidebar Page</a>
-                        </li>
-                        <li>
-                            <a href="layout_sidebar_fixed.html">
-                                Sidebar Fixed Page</a>
-                        </li>
-                        <li>
-                            <a href="layout_sidebar_closed.html">
-                                Sidebar Closed Page</a>
-                        </li>
-                        <li>
-                            <a href="layout_blank_page.html">
-                                Blank Page</a>
-                        </li>
-                        <li>
-                            <a href="layout_boxed_page.html">
-                                Boxed Page</a>
-                        </li>
-                        <li>
-                            <a href="layout_language_bar.html">
-                                Language Switch Bar</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="last ">
-                    <a href="javascript:;">
-                        <i class="icon-pointer"></i>
-                        <span class="title">Maps</span>
-                        <span class="arrow "></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="maps_google.html">
-                                Google Maps</a>
-                        </li>
-                        <li>
-                            <a href="maps_vector.html">
-                                Vector Maps</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <?php $this->widget('Admin_Menu'); ?>
         </div>
     </div>
     <div class="page-content-wrapper">
