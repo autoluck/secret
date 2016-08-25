@@ -6,7 +6,7 @@
  */
 class SignController extends AdminController{
 
-    public $layout = false;
+    public $layout = '/layouts/empty';
 
     public function actionLogin(){
         if(!Yii::app()->user->isGuest){

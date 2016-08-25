@@ -2213,6 +2213,7 @@ EOD;
 		}
 		else
 			$firstError=false;
+
 		foreach($model as $m)
 		{
 			foreach($m->getErrors() as $errors)
@@ -2224,7 +2225,11 @@ EOD;
 					if($firstError)
 						break;
 				}
+				if($firstError)
+					break;
 			}
+			if($firstError)
+				break;
 		}
 		if($content!=='')
 		{
@@ -2232,7 +2237,7 @@ EOD;
 				$header='<p>'.Yii::t('yii','Please fix the following input errors:').'</p>';
 			if(!isset($htmlOptions['class']))
 				$htmlOptions['class']=self::$errorSummaryCss;
-			return self::tag('div',$htmlOptions,$header."\n<ul class='list'>\n$content</ul>".$footer);
+			return self::tag('div',$htmlOptions,$header."\n<ul class='list-unstyled'>\n$content</ul>".$footer);
 		}
 		else
 			return '';
