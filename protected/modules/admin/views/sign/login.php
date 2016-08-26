@@ -1,3 +1,7 @@
+<?php
+    $this->pageTitle = '登录';
+?>
+
 <?php $form = $this->beginWidget('CActiveForm' , array('htmlOptions'=>array('class'=>'login-form'))); ?>
     <h3 class="form-title">登陆</h3>
     <div class="alert alert-danger display-hide">
@@ -16,7 +20,7 @@
     <div class="form-actions">
         <button type="submit" class="btn btn-success uppercase">Login</button>
         <label class="rememberme check">
-            <input type="checkbox" name="remember" value="1"/>Remember
+            <?php echo $form->checkBox($model,'rememberMe')?>Remember
         </label>
     </div>
 <?php $this->endWidget(); ?>

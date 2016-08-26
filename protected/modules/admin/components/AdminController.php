@@ -3,7 +3,7 @@
  * User: JiangTao
  * Date: 16/7/16
  */
-class AdminController extends Controller{
+class AdminController extends CController{
 
     public $layout='/layouts/main';
 
@@ -17,7 +17,7 @@ class AdminController extends Controller{
         if($this->_menu === null){
             $this->_menu = array(
                 array('label'=>'工作台','icon'=>'icon-home','url'=>array('/admin/default/index')),
-                array('label'=>'管理','icon'=>'icon-wrench','url'=>array('javascript:;'),'items'=>array(
+                array('label'=>'管理','icon'=>'icon-wrench','url'=>'javascript:;','items'=>array(
                     array('label'=>'用户','icon'=>'icon-users','url'=>array('/admin/user/list')),
                     array('label'=>'角色','icon'=>'icon-briefcase','url'=>array('admin/role/list')),
                 ))
@@ -32,12 +32,12 @@ class AdminController extends Controller{
         );
     }
 
-/*    public function accessRules(){
+    public function accessRules(){
         return array(
             array('allow','users'=>array('@')),
             array('deny','users'=>array('*')),
         );
-    }*/
+    }
     
 
 

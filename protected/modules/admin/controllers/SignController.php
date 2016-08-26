@@ -10,13 +10,13 @@ class SignController extends AdminController{
 
     public function actionLogin(){
         if(!Yii::app()->user->isGuest){
-            $this->redirect(Yii::app()->user->returnUrl);
+            $this->redirect($this->createUrl('/admin'));
         }
         $model = new Admin_LoginForm();
         if(Yii::app()->request->isPostRequest && !empty($_POST['Admin_LoginForm'])){
             $model->attributes = $_POST['Admin_LoginForm'];
             if($model->validate() && $model->login()){
-                $this->redirect(Yii::app()->user->returnUrl);
+                $this->redirect($this->createUrl('/admin'));
             }
         }
         $this->render('login',array('model'=>$model));

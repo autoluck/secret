@@ -2228,8 +2228,6 @@ EOD;
 				if($firstError)
 					break;
 			}
-			if($firstError)
-				break;
 		}
 		if($content!=='')
 		{
