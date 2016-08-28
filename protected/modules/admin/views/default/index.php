@@ -1,3 +1,7 @@
+<?php
+    $this->pageTitle = '工作台';
+?>
+
 <div class="page-head">
     <div class="page-title">
         <h1>Blank Page <small>blank page</small></h1>

@@ -165,4 +165,8 @@ class AdminUser extends ActiveRecord
 		);
 	}
 
+	public function afterFind(){
+		$this->created = date('Y-m-d H:i:s',$this->created);
+	}
+
 }

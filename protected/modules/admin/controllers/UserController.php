@@ -8,17 +8,17 @@
 class UserController extends AdminController{
 
     public function actionIndex(){
-        $this->render('list');
+        $this->render('index');
     }
 
     public function actionList(){
         $criteria = new CDbCriteria(array(
-            'limit' => $_GET['length'],
-            'offset' => $_GET['start']
+            'limit' => $_GET['limit'],
+            'offset' => $_GET['page']
         ));
         $count = AdminUser::model()->count($criteria);
         $admin = AdminUser::model()->findAll($criteria);
-        $data = array('draw'=>(int)$_GET['draw'],'recordsTotal'=>(int)$count, 'recordsFiltered'=>(int)$count);
+        $data = array('draw'=>(int)$_GET['draw'],'total'=>(int)$count);
         foreach ($admin as $key => $item){
             $item->unsetAttributes(array('password'));
             $data['data'][$key] = array_filter($item->attributes);
