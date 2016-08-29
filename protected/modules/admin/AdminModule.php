@@ -30,7 +30,7 @@ class AdminModule extends CWebModule
 
 	public function getAssetsUrl(){
 		if($this->_assetsUrl===null)
-			$this->_assetsUrl = Yii::app()->assetManager->publish(Yii::getPathOfAlias('admin.assets'));
+			$this->_assetsUrl = Yii::app()->assetManager->publish(Yii::getPathOfAlias('admin.assets'),false,-1,true);
 		return $this->_assetsUrl;
 	}
 

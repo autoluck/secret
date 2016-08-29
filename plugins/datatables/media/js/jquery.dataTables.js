@@ -2698,12 +2698,12 @@
 		var jqFilter = $('input', filter)
 			.val( previousSearch.sSearch )
 			.attr( 'placeholder', language.sSearchPlaceholder )
-			.bind(
+		/*	.bind(
 				'keyup.DT search.DT input.DT paste.DT cut.DT',
 				_fnDataSource( settings ) === 'ssp' ?
 					_fnThrottle( searchFn, 400 ):
 					searchFn
-			)
+			)*/
 			.bind( 'keypress.DT', function(e) {
 				/* Prevent form submission */
 				if ( e.keyCode == 13 ) {

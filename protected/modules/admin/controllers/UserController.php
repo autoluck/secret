@@ -18,7 +18,7 @@ class UserController extends AdminController{
         ));
         $count = AdminUser::model()->count($criteria);
         $admin = AdminUser::model()->findAll($criteria);
-        $data = array('draw'=>(int)$_GET['draw'],'total'=>(int)$count);
+        $data = array('total'=>(int)$count);
         foreach ($admin as $key => $item){
             $item->unsetAttributes(array('password'));
             $data['data'][$key] = array_filter($item->attributes);

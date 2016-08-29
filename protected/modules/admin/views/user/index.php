@@ -41,7 +41,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+
+                    </div>
                 </div>
+
                 <table class="table table-striped table-hover table-bordered" id="example">
                     <thead>
                     <tr>
@@ -75,7 +79,7 @@
 
 <?php
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css');
-    Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/datatables/media/js/jquery.dataTables.min.js',CClientScript::POS_END);
+    Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/datatables/media/js/jquery.dataTables.js',CClientScript::POS_END);
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js',CClientScript::POS_END);
     $js = '
         var columns = [
@@ -91,17 +95,18 @@
             }
         ];
         var $table = $("#example");
-        $table.dataTable({
-            "processing":true,
-            "serverSide":true,
-            "ordering": false,
+        var _table = $table.dataTable({
+            "processing":true, //加载提示 true显示 false隐藏
+            "serverSide":true, //启用服务器端分页
+            "ordering": false, //禁用原生排序
+            //"searching": false,    //禁用原生搜索
             "ajax" : function(data, callback, settings) {//ajax配置为function,手动调用异步查询
                 //封装请求参数
                 $.ajax({
                         type: "GET",
                         url: "'.$this->createUrl('list').'",
                         cache : false,  //禁用缓存
-                        data: {page:data.start,limit:data.length},    //传入已封装的参数
+                        data: {page:data.start,limit:data.length,key:data.search.value},    //传入已封装的参数
                         dataType: "json",
                         success: function(result) {
                             //setTimeout仅为测试延迟效果
@@ -114,7 +119,6 @@
 
                                 //封装返回数据，这里仅演示了修改属性名
                                 var returnData = {};
-                                returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
                                 returnData.recordsTotal = result.total;
                                 returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
                                 returnData.data = result.data;
@@ -128,10 +132,6 @@
                         }
                     });
             },
-            "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
-            ],
             "columns": columns,
             "pageLength": 10,
             "createdRow": function ( row, data, index ) {
