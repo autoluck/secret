@@ -14,7 +14,7 @@ class ActiveRecord extends CActiveRecord{
         }else{
             $criteria = new CDbCriteria();
         }
-        $pagination = array_merge(array('pageVar'=>'page','pageSize'=>15),$pagination);
+        $pagination = array_merge(array('pageVar'=>'page','pageSize'=>10),$pagination);
         return new CActiveDataProvider($this->model(),array(
             'criteria'=>$criteria,
             'pagination'=>$pagination

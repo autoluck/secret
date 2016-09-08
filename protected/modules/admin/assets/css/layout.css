@@ -1795,3 +1795,18 @@ Page Loading
   display: none;
   transition: all 2s;
 }
+
+/***
+Admin_Page
+***/
+div.admin_page_info{
+  padding-top: 8px;
+}
+div.admin_page_paginate {
+  float: right;
+  margin: 0;
+}
+div.admin_page_paginate ul.pagination {
+  margin: 2px 0;
+  white-space: nowrap;
+}

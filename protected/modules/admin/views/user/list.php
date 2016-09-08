@@ -23,7 +23,8 @@ $this->pageTitle = '用户列表';
                         <div class="col-md-4 col-sm-12">
                             <div class="table-group-actions pull-right">
                                 <input type="text" class="form-control input-inline" name="keyword">
-                                <button class="btn yellow table-group-action-submit"><i class="fa fa-search"></i> 搜索</button>
+                                <button class="btn yellow table-group-action-submit"><i class="fa fa-search"></i> 搜索
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -50,29 +51,30 @@ $this->pageTitle = '用户列表';
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($dataProvider->data as $item): ?>
-                        <tr>
-                            <td>
-                                <?php echo $item->id; ?>
-                            </td>
-                            <td>
-                                <?php echo $item->username; ?>
-                            </td>
-                            <td>
-                                <?php echo $item->email; ?>
-                            </td>
-                            <td>
-                                <?php echo $item->created ?>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-small btn-primary btn-edit">修改</button>
-                                <button type="button" class="btn btn-small btn-danger btn-del">删除</button>
-                            </td>
-                        </tr>
+                        <?php foreach ($dataProvider->data as $item): ?>
+                            <tr>
+                                <td>
+                                    <?php echo $item->id; ?>
+                                </td>
+                                <td>
+                                    <?php echo $item->username; ?>
+                                </td>
+                                <td>
+                                    <?php echo $item->email; ?>
+                                </td>
+                                <td>
+                                    <?php echo $item->created ?>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-small btn-primary btn-edit">修改</button>
+                                    <button type="button" class="btn btn-small btn-danger btn-del">删除</button>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+                <?php $this->widget('Admin_Page',array('pages'=>$dataProvider->pagination)); ?>
             </div>
         </div>
     </div>
