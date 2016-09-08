@@ -18,7 +18,7 @@ class AdminController extends CController{
             $this->_menu = array(
                 array('label'=>'工作台','icon'=>'icon-home','url'=>array('/admin/default/index')),
                 array('label'=>'管理','icon'=>'icon-wrench','url'=>'javascript:;','items'=>array(
-                    array('label'=>'用户','icon'=>'icon-users','url'=>array('/admin/user/index')),
+                    array('label'=>'用户','icon'=>'icon-users','url'=>array('/admin/user/list')),
                     array('label'=>'角色','icon'=>'icon-briefcase','url'=>array('admin/role/list')),
                 ))
             );
