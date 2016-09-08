@@ -91,7 +91,9 @@
             {
                 data: null,
                 defaultContent:"",
-                orderable : false,
+                render: function (data,type, row, meta) {
+                    return \'<button type="button" class="btn btn-small btn-primary btn-edit">修改</button>\';
+                }
             }
         ];
         var $table = $("#example");
@@ -134,13 +136,6 @@
             },
             "columns": columns,
             "pageLength": 10,
-            "createdRow": function ( row, data, index ) {
-                //给当前行某列加样式
-                //不使用render，改用jquery文档操作呈现单元格
-                var $btnEdit = $(\'<button type="button" class="btn btn-small btn-primary btn-edit">修改</button>\');
-                var $btnDel = $(\'<button type="button" class="btn btn-small btn-danger btn-del">删除</button>\');
-                $("td:last", row).append($btnEdit).append($btnDel);
-            },
             "language": {
                     "sProcessing":   "处理中...",
                     "sLengthMenu":   "每页 _MENU_ 项",
@@ -162,6 +157,10 @@
                         "sJump":     "跳转"
                     },
             },
+        }).api();
+        $(".dataTables_filter input").unbind().bind("keydown",function(e){
+            if(e.keyCode == 13)
+                _table.search(this.value).draw();
         });
     ';
     Yii::app()->clientScript->registerScript('dataTable',$js,CClientScript::POS_END);

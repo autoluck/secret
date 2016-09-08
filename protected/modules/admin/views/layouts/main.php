@@ -32,7 +32,8 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="http://fonts.useso.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<!--    <link href="http://fonts.useso.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
     <?php
         $cs->registerCssFile($baseUrl.'/plugins/font-awesome/css/font-awesome.min.css');
         $cs->registerCssFile($baseUrl.'/plugins/simple-line-icons/simple-line-icons.min.css');
