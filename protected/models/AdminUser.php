@@ -40,7 +40,7 @@ class AdminUser extends ActiveRecord
 			array('email','email'),
 			array('password', 'length', 'max'=>22, 'min'=>6, 'tooLong'=>'密码请输入长度为6-22位字符', 'tooShort'=>'密码请输入长度为6-22位字符'),
 			array('created, updated, status', 'numerical', 'integerOnly'=>true),
-			array('username, password, email', 'length', 'max'=>255),
+//			array('username, password, email', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, email, created, updated, status', 'safe', 'on'=>'search'),
@@ -125,7 +125,18 @@ class AdminUser extends ActiveRecord
 			)
 		);
 	}
-	
+
+	public function beforeValidate(){
+		if($this->getIsNewRecord()){
+			$this->created = time();
+		}else{
+			if($this->created)
+				$this->created = strtotime($this->created);
+			$this->updated = time();
+		}
+		return true;
+	}
+
 	public function afterValidate(){
 		if(!$this->hasErrors()){
 			if($this->getIsNewRecord()){

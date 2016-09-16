@@ -19,6 +19,7 @@ class Admin_UserIdentity extends CUserIdentity{
             $this->errorCode = self::ERROR_NONE;
             $this->_id = $admin_user->id;
             $this->username = $admin_user->username;
+            $this->setState('auth',$this->getAuth());
         }
         return $this->errorCode == self::ERROR_NONE;
     }
@@ -27,6 +28,18 @@ class Admin_UserIdentity extends CUserIdentity{
         return $this->_id;
     }
 
-
+    public function getAuth(){
+        $auth = Yii::app()->auth->getAuthAssignments($this->_id);
+        $auth_array = array();
+        foreach($auth as $item){
+            $rules = Yii::app()->auth->getItemChildren($item->itemname);
+            foreach($rules as $rule){
+                if(isset($auth_array[$rule->name]))
+                    continue;
+                array_push($auth_array,$rule->name);
+            }
+        }
+        return $auth_array;
+    }
 
 }

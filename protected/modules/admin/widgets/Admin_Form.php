@@ -13,9 +13,11 @@ class Admin_Form extends CActiveForm{
     public $clientOptions =array(
         'validateOnSubmit'=>true,
         'validateOnChange'=>true,
-        'errorCssClass'=>'has-error'
+        'errorCssClass'=>'has-error',
+        'afterValidate'=>'js:function(form, data, hasError){if(hasError){for(id in data){$("#"+id).parents(".form-group").addClass("has-error");}}else{return true;}}'
     );
     public $htmlOptions = array(
-        'class'=>'form-horizontal adminex-form'
+        'class'=>'form-horizontal'
     );
+
 }

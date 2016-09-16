@@ -16,6 +16,13 @@ class AdminModule extends CWebModule
 				'loginUrl'=>Yii::app()->createUrl($this->getId().'/sign/login'),
 				'authTimeout'=>'3600'
 			),
+			'auth'=>array(
+				'class'=>'CDbAuthManager',
+				'connectionID'=>'db',
+				'itemTable'=>'auth_item',
+				'itemChildTable'=>'auth_item_child',
+				'assignmentTable'=>'auth_assignment'
+			),
 		));
 		// this method is called when the module is being created
 		// you may place code here to customize the module or the application

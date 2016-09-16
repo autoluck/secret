@@ -1,7 +1,6 @@
 <?php
-$this->pageTitle = '用户列表';
+    $this->pageTitle = '角色列表';
 ?>
-
 <div class="row">
     <div class="col-md-12">
         <div class="portlet box blue">
@@ -15,9 +14,9 @@ $this->pageTitle = '用户列表';
                     <div class="row">
                         <div class="col-md-8">
                             <div class="btn-group">
-                                <button class="btn green">
+                                <a class="btn green" href="<?php echo $this->createUrl('edit'); ?>">
                                     新增<i class="fa fa-plus"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
@@ -34,16 +33,10 @@ $this->pageTitle = '用户列表';
                         <thead>
                         <tr>
                             <th>
-                                ID
+                                角色名称
                             </th>
                             <th>
-                                用户名
-                            </th>
-                            <th>
-                                邮箱
-                            </th>
-                            <th>
-                                创建时间
+                                描述
                             </th>
                             <th>
                                 操作
@@ -51,22 +44,16 @@ $this->pageTitle = '用户列表';
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($dataProvider->data as $item): ?>
+                        <?php foreach ($data as $item): ?>
                             <tr>
                                 <td>
-                                    <?php echo $item->id; ?>
+                                    <?php echo $item->name; ?>
                                 </td>
                                 <td>
-                                    <?php echo $item->username; ?>
+                                    <?php echo $item->description; ?>
                                 </td>
                                 <td>
-                                    <?php echo $item->email; ?>
-                                </td>
-                                <td>
-                                    <?php echo $item->created ?>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-small btn-primary btn-edit">修改</button>
+                                    <a href="<?php echo $this->createUrl('edit',array('role'=>$item->name)) ?>" class="btn btn-small btn-primary btn-edit">修改</a>
                                     <button type="button" class="btn btn-small btn-danger btn-del">删除</button>
                                 </td>
                             </tr>
@@ -74,7 +61,6 @@ $this->pageTitle = '用户列表';
                         </tbody>
                     </table>
                 </div>
-                <?php $this->widget('Admin_Page',array('pages'=>$dataProvider->pagination)); ?>
             </div>
         </div>
     </div>

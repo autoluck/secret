@@ -1683,7 +1683,9 @@ li [class*=" icon-"].icon-large {
 .icon-state-danger {
   color: #F3565D;
 }
-
+.icon-tree-color{
+  color:#dfba49;
+}
 /***
 Font Awesome 4.x Demo
 ***/
