@@ -133,7 +133,7 @@ abstract class CApplication extends CModule
 	{
 		Yii::setApplication($this);
 
-		// set basePath as early as possible to avoid trouble
+		// set basePath at early as possible to avoid trouble
 		if(is_string($config))
 			$config=require($config);
 		if(isset($config['basePath']))
@@ -572,7 +572,7 @@ abstract class CApplication extends CModule
 	public function createAbsoluteUrl($route,$params=array(),$schema='',$ampersand='&')
 	{
 		$url=$this->createUrl($route,$params,$ampersand);
-		if(strpos($url,'http')===0 || strpos($url,'//')===0)
+		if(strpos($url,'http')===0)
 			return $url;
 		else
 			return $this->getRequest()->getHostInfo($schema).$url;

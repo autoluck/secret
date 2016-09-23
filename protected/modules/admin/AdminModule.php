@@ -23,6 +23,10 @@ class AdminModule extends CWebModule
 				'itemChildTable'=>'auth_item_child',
 				'assignmentTable'=>'auth_assignment'
 			),
+			'errorHandler'=>array(
+				// use 'site/error' action to display errors
+				'errorAction'=>YII_DEBUG ? null : 'admin/error/index',
+			),
 		));
 		// this method is called when the module is being created
 		// you may place code here to customize the module or the application

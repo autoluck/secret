@@ -53,7 +53,7 @@
                                     <?php echo $item->description; ?>
                                 </td>
                                 <td>
-                                    <a href="<?php echo $this->createUrl('edit',array('role'=>$item->name)) ?>" class="btn btn-small btn-primary btn-edit">修改</a>
+                                    <a href="<?php echo $this->createUrl('edit',array('name'=>$item->name)) ?>" class="btn btn-small btn-primary btn-edit">修改</a>
                                     <button type="button" class="btn btn-small btn-danger btn-del">删除</button>
                                 </td>
                             </tr>

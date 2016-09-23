@@ -40,7 +40,7 @@ class YiiBase
 	private static $_logger;
 	public static function getVersion()
 	{
-		return '1.1.18-dev';
+		return '1.1.17';
 	}
 	public static function createWebApplication($config=null)
 	{
@@ -904,7 +904,7 @@ abstract class CModule extends CComponent
 	{
 		$this->_id=$id;
 		$this->_parentModule=$parent;
-		// set basePath as early as possible to avoid trouble
+		// set basePath at early as possible to avoid trouble
 		if(is_string($config))
 			$config=require($config);
 		if(isset($config['basePath']))
@@ -1165,7 +1165,7 @@ abstract class CApplication extends CModule
 	public function __construct($config=null)
 	{
 		Yii::setApplication($this);
-		// set basePath as early as possible to avoid trouble
+		// set basePath at early as possible to avoid trouble
 		if(is_string($config))
 			$config=require($config);
 		if(isset($config['basePath']))

@@ -12,6 +12,8 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
 
+	'defaultController'=>'admin/default/index',
+
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
@@ -42,19 +44,17 @@ return array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
 			),
 		),
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
 
-		'errorHandler'=>array(
-			// use 'site/error' action to display errors
-			'errorAction'=>YII_DEBUG ? null : 'site/error',
-		),
+//		'errorHandler'=>array(
+//			// use 'site/error' action to display errors
+//			'errorAction'=>YII_DEBUG ? null : 'site/error',
+//		),
 		'clientScript' => array(
 			'scriptMap' => array(
 				'jquery.js' => false,//不加载系统自带的jquery

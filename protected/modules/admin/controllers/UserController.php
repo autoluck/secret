@@ -8,17 +8,6 @@
 class UserController extends AdminController{
 
     public function actionIndex(){
-/*        $auth = Yii::app()->auth->getAuthAssignments(Yii::app()->user->id);
-        $auth_array = array();
-        foreach($auth as $item){
-            $rules = Yii::app()->auth->getItemChildren($item->itemname);
-            foreach($rules as $rule){
-                if(isset($auth_array[$rule->name]))
-                    continue;
-                array_push($auth_array,$rule->name);
-            }
-        }
-        print_r($auth_array);die;*/
         $dataProvider =  AdminUser::model()->getList();
         $this->render('index',array('dataProvider'=>$dataProvider));
     }
@@ -29,17 +18,34 @@ class UserController extends AdminController{
             throw new CException('参数错误');
         if(!$model->getIsNewRecord())
             $model->unsetAttributes(array('password'));
+        $authItem = Yii::app()->auth->getAuthItems(2,$model->id);
+        $role = array();
+        foreach(Yii::app()->auth->getRoles() as $key => $value){
+            $role[$key]['name'] = $value->name;
+            $role[$key]['description'] = $value->description;
+        }
+        $checked_role = array();
+        if($authItem){
+            foreach($authItem as $item){
+               $checked_role[] = $item->name;
+            }
+        }
         if(Yii::app()->request->isPostRequest && $posts = $_POST['AdminUser']){
             $roles = $_POST['role'];
             $model->attributes = $posts;
             if($model->save()){
-                foreach($roles as $role){
-                    Yii::app()->auth->assign($role, Yii::app()->user->id);
-                }
+                    foreach ($roles as $val) {
+                        if($model->getIsNewRecord()){
+                            Yii::app()->auth->assign($val, Yii::app()->user->id);
+                        }else{
+                            foreach($checked_role as $checked){
+
+                            }
+                        }
+                    }
                 $this->toastrRedirect(Admin_Toastr::SUCCESS_CODE,'保存成功',$this->createUrl('index'));
             }
         }
-        $role = Yii::app()->auth->getRoles();
         $this->render('edit',array('model'=>$model,'role'=>$role));
     }
 }
