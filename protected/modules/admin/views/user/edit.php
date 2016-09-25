@@ -41,7 +41,7 @@ $this->pageTitle = '编辑用户';
                     <div class="md-checkbox-inline col-md-4">
                         <?php foreach($role as $val): ?>
                         <div class="md-checkbox">
-                            <input name="role[]" id="<?php echo $val['name']; ?>-checkbox" value="<?php echo $val['name']; ?>" type="checkbox" class="md-check" <?php if($val['checked']) {echo 'checked';} ?>>
+                            <input name="role[]" id="<?php echo $val['name']; ?>-checkbox" value="<?php echo $val['name']; ?>" type="checkbox" class="md-check" <?php if(isset($checked_role[$val['name']])) {echo 'checked';} ?>>
                             <label for="<?php echo $val['name']; ?>-checkbox">
                                 <span class="inc"></span>
                                 <span class="check"></span>

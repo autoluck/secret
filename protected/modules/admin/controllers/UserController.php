@@ -27,7 +27,7 @@ class UserController extends AdminController{
         $checked_role = array();
         if($authItem){
             foreach($authItem as $item){
-               $checked_role[] = $item->name;
+               $checked_role[$item->name] = $item->description;
             }
         }
         if(Yii::app()->request->isPostRequest && $posts = $_POST['AdminUser']){
@@ -38,14 +38,20 @@ class UserController extends AdminController{
                         if($model->getIsNewRecord()){
                             Yii::app()->auth->assign($val, Yii::app()->user->id);
                         }else{
-                            foreach($checked_role as $checked){
-
-                            }
+                            if(isset($checked_role[$val]))
+                                unset($checked_role[$val]);
+                            else
+                                Yii::app()->auth->assign($val,Yii::app()->user->id);
+                        }
+                    }
+                    if($checked_role){
+                        foreach($checked_role as $key=>$rule){
+                            Yii::app()->auth->revoke($key,$model->id);
                         }
                     }
                 $this->toastrRedirect(Admin_Toastr::SUCCESS_CODE,'保存成功',$this->createUrl('index'));
             }
         }
-        $this->render('edit',array('model'=>$model,'role'=>$role));
+        $this->render('edit',array('model'=>$model,'role'=>$role,'checked_role'=>$checked_role));
     }
 }
