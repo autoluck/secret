@@ -43,6 +43,9 @@ $this->pageTitle = '用户列表';
                                 邮箱
                             </th>
                             <th>
+                                角色
+                            </th>
+                            <th>
                                 创建时间
                             </th>
                             <th>
@@ -57,17 +60,26 @@ $this->pageTitle = '用户列表';
                                     <?php echo $item->id; ?>
                                 </td>
                                 <td>
-                                    <?php echo $item->username; ?>
+                                    <?php echo $item->username; ?>*
                                 </td>
                                 <td>
                                     <?php echo $item->email; ?>
+                                </td>
+                                <td> &nbsp;
+                                    <?php
+                                        if($item->role){
+                                            foreach ($item->role as $val){
+                                                echo '<span class="label bg-green">'.$val->description.'</span>&nbsp;';
+                                            }
+                                        }
+                                    ?>
                                 </td>
                                 <td>
                                     <?php echo $item->created ?>
                                 </td>
                                 <td>
-                                    <a href="<?php echo $this->createUrl('edit',array('id'=>$item->id)) ?>" class="btn btn-small btn-primary btn-edit">修改</a>
-                                    <button type="button" class="btn btn-small btn-danger btn-del">删除</button>
+                                    <a href="<?php echo $this->createUrl('edit',array('id'=>$item->id)) ?>" class="btn btn-small btn-primary btn-edit"><i class="fa fa-edit"></i>修改</a>
+                                    <button type="button" class="btn btn-small btn-danger btn-del"><i class="fa fa-times"></i>删除</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

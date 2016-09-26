@@ -9,6 +9,9 @@ class UserController extends AdminController{
 
     public function actionIndex(){
         $dataProvider =  AdminUser::model()->getList();
+        foreach ($dataProvider->data as $item ){
+            $item->role = Yii::app()->auth->getAuthItems(2,$item->id);
+        }
         $this->render('index',array('dataProvider'=>$dataProvider));
     }
 

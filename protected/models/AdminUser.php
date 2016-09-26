@@ -14,6 +14,8 @@
  */
 class AdminUser extends ActiveRecord
 {
+	public $role ;
+
 	const STATUS_DELETED = 0;
 	const STATUS_ACTIVE = 1;
 

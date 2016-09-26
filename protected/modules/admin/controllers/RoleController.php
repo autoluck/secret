@@ -13,19 +13,6 @@ class RoleController extends AdminController{
     }
 
     public function actionEdit($name=''){
-       /*   $auth = Yii::app()->auth;
-            $auth->createTask('/admin/default/index','工作台');
-            $task = $auth->createTask('/admin/user/list','用户');
-            $auth->createOperation('/admin/user/edit','编辑用户');
-            $auth->createOperation('/admin/user/del','删除用户');
-            $task->addChild('/admin/user/edit');
-            $task->addChild('/admin/user/del');
-            $role = $auth->createTask('/admin/role/list','角色');
-            $auth->createOperation('/admin/role/edit','编辑角色');
-            $auth->createOperation('/admin/role/del','删除角色');
-            $role->addChild('/admin/role/edit');
-            $role->addChild('/admin/role/del');*/
-            /*******************************/
             if($name == ''){
                 $model = new RoleForm('create');
             }else{
