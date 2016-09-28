@@ -49,4 +49,12 @@ class RoleController extends AdminController{
             $this->render('edit',$back);
     }
 
+    public function actionDel($name){
+        $auth_item = Yii::app()->auth->getAuthItem($name);
+        if(!$auth_item)
+            throw new CException('不存在的角色');
+        Yii::app()->auth->removeAuthItem($auth_item->name);
+        
+    }
+
 }

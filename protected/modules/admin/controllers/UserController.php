@@ -57,4 +57,15 @@ class UserController extends AdminController{
         }
         $this->render('edit',array('model'=>$model,'role'=>$role,'checked_role'=>$checked_role));
     }
+    
+    public function actionDel($id){
+        $admin_user = AdminUser::model()->findByPk($id);
+        if(!$admin_user)
+            throw new CException('不存在的用户');
+        $admin_user->delete();
+        $auth_items = Yii::app()->auth->getAuthItems(2,$admin_user->id);
+        foreach ($auth_items as $item){
+            Yii::app()->auth->revoke($item->name,$admin_user->id);
+        }
+    }
 }
