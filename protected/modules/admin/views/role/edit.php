@@ -51,11 +51,11 @@ Yii::app()->clientScript->registerScript(__CLASS__."#js",$js,CClientScript::POS_
                 <div id="container">
                     <ul>
                         <?php foreach($data as $el=>$item): ?>
-                        <li id="<?php  echo $el ; ?>"  <?php if($item['child'] && (isset($rule) && $rule[$el])){ ?> data-jstree='{ "selected" : true , "opened" : true }' <?php }elseif($item['child']){  ?>data-jstree='{"opened" : true }' <?php }elseif(isset($rule) && $rule[$el]){ ?> data-jstree='{ "selected" : true }' <?php }?>><?php  echo $item['name'] ; ?>
-                           <?php if($item['child']){ ?>
+                        <li id="<?php  echo $el ; ?>"  <?php if((isset($item['child']) && $item['child']) && isset($rule[$el])){ ?> data-jstree='{ "selected" : true , "opened" : true }' <?php }elseif(isset($item['child']) && $item['child']){  ?>data-jstree='{"opened" : true }' <?php }elseif(isset($rule[$el])){ ?> data-jstree='{ "selected" : true }' <?php }?>><?php  echo $item['name'] ; ?>
+                           <?php if(isset($item['child'])&& $item['child']){ ?>
                                 <ul>
                                     <?php foreach($item['child'] as $key=>$val): ?>
-                                     <li id="<?php  echo $key ; ?>" <?php if(isset($rule) && $rule[$key]){ ?>data-jstree='{ "selected" : true }' <?php } ?>><?php  echo $val['name'] ; ?></li>
+                                     <li id="<?php  echo $key ; ?>" <?php if(isset($rule[$key])){ ?>data-jstree='{ "selected" : true }' <?php } ?>><?php  echo $val['name'] ; ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             <?php } ?>

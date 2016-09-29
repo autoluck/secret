@@ -13,6 +13,8 @@ class RoleController extends AdminController{
     }
 
     public function actionEdit($name=''){
+            if($name == 'admin')
+                throw new CException('管理员角色无法修改');
             if($name == ''){
                 $model = new RoleForm('create');
             }else{
@@ -51,10 +53,17 @@ class RoleController extends AdminController{
 
     public function actionDel($name){
         $auth_item = Yii::app()->auth->getAuthItem($name);
-        if(!$auth_item)
-            throw new CException('不存在的角色');
-        Yii::app()->auth->removeAuthItem($auth_item->name);
-        
+        if($name == 'admin'){
+            $this->sendResponse(false,'管理员角色不能删除');
+        }
+        if(!$auth_item || $auth_item->type != 2 )
+            $this->sendResponse(false, '不存在的角色');
+        $res = Yii::app()->auth->removeAuthItem($auth_item->name);
+        if($res) {
+            $this->sendResponse(true, 'ok');
+        }else{
+            $this->sendResponse(false,'删除失败');
+        }
     }
 
 }

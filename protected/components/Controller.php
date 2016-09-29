@@ -5,4 +5,14 @@
  */
 class Controller extends CController
 {
+
+    public function sendResponse($code,$message='',$data=array()){
+        header("Content-type:application/json");
+        echo CJSON::encode(array(
+            'code'=>$code,
+            'msg'=>$message,
+            'data'=>$data
+        ));
+        Yii::app()->end();
+    }
 }

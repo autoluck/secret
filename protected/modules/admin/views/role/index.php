@@ -54,7 +54,7 @@
                                 </td>
                                 <td>
                                     <a href="<?php echo $this->createUrl('edit',array('name'=>$item->name)) ?>" class="btn btn-small btn-primary btn-edit">修改</a>
-                                    <button type="button" class="btn btn-small btn-danger btn-del">删除</button>
+                                    <?php $this->widget('Admin_DelButton',array('del_url'=>$this->createUrl('del',array('name'=>$item->name)))) ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -16,19 +16,21 @@ class UserController extends AdminController{
     }
 
     public function actionEdit($id=''){
+        if($id == 1){
+            throw new CException('管理员不能修改');
+        }
         $model = $id=='' ? new AdminUser('create') : AdminUser::model()->findByPk($id);
         if(empty($model))
             throw new CException('参数错误');
         if(!$model->getIsNewRecord())
             $model->unsetAttributes(array('password'));
-        $authItem = Yii::app()->auth->getAuthItems(2,$model->id);
         $role = array();
         foreach(Yii::app()->auth->getRoles() as $key => $value){
             $role[$key]['name'] = $value->name;
             $role[$key]['description'] = $value->description;
         }
         $checked_role = array();
-        if($authItem){
+        if(!$model->getIsNewRecord() &&  $authItem = Yii::app()->auth->getAuthItems(2,$model->id)){
             foreach($authItem as $item){
                $checked_role[$item->name] = $item->description;
             }
@@ -39,12 +41,12 @@ class UserController extends AdminController{
             if($model->save()){
                     foreach ($roles as $val) {
                         if($model->getIsNewRecord()){
-                            Yii::app()->auth->assign($val, Yii::app()->user->id);
+                            Yii::app()->auth->assign($val, $model->id);
                         }else{
                             if(isset($checked_role[$val]))
                                 unset($checked_role[$val]);
                             else
-                                Yii::app()->auth->assign($val,Yii::app()->user->id);
+                                Yii::app()->auth->assign($val,$model->id);
                         }
                     }
                     if($checked_role){
@@ -59,13 +61,31 @@ class UserController extends AdminController{
     }
     
     public function actionDel($id){
+        if($id == 1){
+            $this->sendResponse(false,'管理员不能删除');
+        }
         $admin_user = AdminUser::model()->findByPk($id);
         if(!$admin_user)
-            throw new CException('不存在的用户');
-        $admin_user->delete();
-        $auth_items = Yii::app()->auth->getAuthItems(2,$admin_user->id);
-        foreach ($auth_items as $item){
-            Yii::app()->auth->revoke($item->name,$admin_user->id);
+            $this->sendResponse(false,'不存在的用户');
+        $transaction = Yii::app()->db->beginTransaction();
+        try{
+            if($admin_user->delete()) {
+                $auth_items = Yii::app()->auth->getAuthItems(2, $admin_user->id);
+                if($auth_items) {
+                    foreach ($auth_items as $item) {
+                        $res = Yii::app()->auth->revoke($item->name, $admin_user->id);
+                        if(!$res)
+                            throw new CException('删除失败');
+                    }
+                }
+                $transaction->commit();
+                $this->sendResponse(true,'ok');
+            }else{
+               throw new CException('删除失败');
+            }
+        }catch (CException $e){
+            $transaction->rollback();
+            $this->sendResponse(false,$e->getMessage());
         }
     }
 }

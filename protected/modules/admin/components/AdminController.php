@@ -3,7 +3,7 @@
  * User: JiangTao
  * Date: 16/7/16
  */
-class AdminController extends CController{
+class AdminController extends Controller{
 
     public $layout='/layouts/main';
 

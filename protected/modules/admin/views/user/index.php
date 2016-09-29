@@ -60,7 +60,7 @@ $this->pageTitle = '用户列表';
                                     <?php echo $item->id; ?>
                                 </td>
                                 <td>
-                                    <?php echo $item->username; ?>*
+                                    <?php echo $item->username; ?>
                                 </td>
                                 <td>
                                     <?php echo $item->email; ?>
@@ -79,7 +79,7 @@ $this->pageTitle = '用户列表';
                                 </td>
                                 <td>
                                     <a href="<?php echo $this->createUrl('edit',array('id'=>$item->id)) ?>" class="btn btn-small btn-primary btn-edit"><i class="fa fa-edit"></i>修改</a>
-                                    <button type="button" class="btn btn-small btn-danger btn-del"><i class="fa fa-times"></i>删除</button>
+                                    <?php $this->widget('Admin_DelButton',array('del_url'=>$this->createUrl('del',array('id'=>$item->id)))) ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
