@@ -8,16 +8,15 @@
 
 ## 截图
 
-## ![Yii rbac](http://obqt0cm4k.bkt.clouddn.com/rbac1.png)
-![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac2.png)
+## ![Yii rbac](http://obqt0cm4k.bkt.clouddn.com/rbac6.png)
+![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac5.png)
 ![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac3.png)
 ![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac4.png)
-![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac5.png)
-![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac6.png)
+![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac2.png)
+![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac1.png)
 ## 安装
 
 - git clone 到本地
-- cd secret
 - 配置 **protected/config/database.php** 中数据库连接信息
 - 执行 `php protected/yiic migrate up`
 - 访问 localhost
