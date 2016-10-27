@@ -16,8 +16,9 @@
 ![rbac](http://obqt0cm4k.bkt.clouddn.com/rbac1.png)
 ## 安装
 
-- git clone 到本地
+- git clone https://github.com/jtcczu/secret.git
 - 配置 **protected/config/database.php** 中数据库连接信息
+- cd secret
 - 执行 `php protected/yiic migrate up`
 - 访问 localhost
 - 默认后台账号:admin 密码:123456
